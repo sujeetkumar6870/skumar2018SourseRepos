@@ -1,0 +1,1406 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/4/2018 5:03:31 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IN5CD7031HG0"
+  DTS:CreatorName="EAD\skumar2018"
+  DTS:DTSID="{2BED3885-82B9-4597-AE08-A79AB05A955A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.101"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{2B0EE68A-B3DB-4DF6-864C-E57583077E8E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{5D27CD4A-641B-4978-B7BF-4E8FD68B9E6F}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.15.0;Data Source=C:\MetrixData.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[IN5CD7031HG0\SUJEETSARKARSQL.SSISDemo]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{63B24A7D-8257-4AAA-8B56-00928D9F4CCA}"
+      DTS:ObjectName="IN5CD7031HG0\SUJEETSARKARSQL.SSISDemo">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=IN5CD7031HG0\SUJEETSARKARSQL;Initial Catalog=SSISDemo;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Excel To SQL"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{C6361028-9F80-4896-AF47-AE183D90A5E3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Excel To SQL"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Excel To SQL\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">'Raw Data filtered$'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Excel To SQL\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Incident ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Incident ID]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Incident ID]"
+                      name="Incident ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Priority]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Priority]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Priority]"
+                      name="Priority"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Category]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Category]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Category]"
+                      name="Category"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Sub Category]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sub Category]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Sub Category]"
+                      name="Sub Category"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Product Type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Product Type]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Product Type]"
+                      name="Product Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Service Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Service Name]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Service Name]"
+                      name="Service Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Status]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Status]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Status]"
+                      name="Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Assigned SPG]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Assigned SPG]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Assigned SPG]"
+                      name="Assigned SPG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Person Assigned]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Person Assigned]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Person Assigned]"
+                      name="Person Assigned"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Incident Title]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Incident Title]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Incident Title]"
+                      name="Incident Title"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Met Resolve SLA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Met Resolve SLA]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Met Resolve SLA]"
+                      name="Met Resolve SLA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Closure Code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Closure Code]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Closure Code]"
+                      name="Closure Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Duplicate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Duplicate]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Duplicate]"
+                      name="Duplicate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Operator Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Operator Name]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Operator Name]"
+                      name="Operator Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Operator Source]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Operator Source]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Operator Source]"
+                      name="Operator Source"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[SLA Attached]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[SLA Attached]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[SLA Attached]"
+                      name="SLA Attached"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Raised]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Raised]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Raised]"
+                      name="Raised"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Duration]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Duration]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Duration]"
+                      name="Duration"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Time to Restore]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Time to Restore]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Time to Restore]"
+                      name="Time to Restore"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Comments (Mins)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Comments (Mins)]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Comments (Mins)]"
+                      name="Comments (Mins)"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Service Tier]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Service Tier]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Service Tier]"
+                      name="Service Tier"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Duration Hours]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Duration Hours]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Duration Hours]"
+                      name="Duration Hours"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[SLA Target in Hours]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[SLA Target in Hours]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[SLA Target in Hours]"
+                      name="SLA Target in Hours"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Actual Duration in Hours]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Actual Duration in Hours]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Actual Duration in Hours]"
+                      name="Actual Duration in Hours"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Calculated SLA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Calculated SLA]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Calculated SLA]"
+                      name="Calculated SLA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Company]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Company]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Company]"
+                      name="Company"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Capability]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Capability]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Capability]"
+                      name="Capability"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[WE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[WE]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[WE]"
+                      name="WE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[IM Validation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[IM Validation]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[IM Validation]"
+                      name="IM Validation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[P1 P2 Validation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[P1 P2 Validation]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[P1 P2 Validation]"
+                      name="P1 P2 Validation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[P3 P4 Validation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[P3 P4 Validation]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[P3 P4 Validation]"
+                      name="P3 P4 Validation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Validated SLA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Validated SLA]"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Validated SLA]"
+                      name="Validated SLA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[MMTR Duration2]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[MMTR Duration2]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[MMTR Duration2]"
+                      name="MMTR Duration2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Incident ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Incident ID" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Priority]"
+                      dataType="wstr"
+                      length="255"
+                      name="Priority" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Category]"
+                      dataType="wstr"
+                      length="255"
+                      name="Category" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sub Category]"
+                      dataType="wstr"
+                      length="255"
+                      name="Sub Category" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Product Type]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product Type" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Service Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Service Name" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Status]"
+                      dataType="wstr"
+                      length="255"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Assigned SPG]"
+                      dataType="wstr"
+                      length="255"
+                      name="Assigned SPG" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Person Assigned]"
+                      dataType="wstr"
+                      length="255"
+                      name="Person Assigned" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Incident Title]"
+                      dataType="wstr"
+                      length="255"
+                      name="Incident Title" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Met Resolve SLA]"
+                      dataType="wstr"
+                      length="255"
+                      name="Met Resolve SLA" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Closure Code]"
+                      dataType="wstr"
+                      length="255"
+                      name="Closure Code" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Duplicate]"
+                      dataType="wstr"
+                      length="255"
+                      name="Duplicate" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Operator Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Operator Name" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Operator Source]"
+                      dataType="wstr"
+                      length="255"
+                      name="Operator Source" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Created Date]"
+                      dataType="date"
+                      name="Created Date" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Completed Date]"
+                      dataType="date"
+                      name="Completed Date" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[SLA Attached]"
+                      dataType="date"
+                      name="SLA Attached" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Raised]"
+                      dataType="wstr"
+                      length="255"
+                      name="Raised" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Duration]"
+                      dataType="wstr"
+                      length="255"
+                      name="Duration" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Time to Restore]"
+                      dataType="wstr"
+                      length="255"
+                      name="Time to Restore" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Comments (Mins)]"
+                      dataType="r8"
+                      name="Comments (Mins)" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Service Tier]"
+                      dataType="wstr"
+                      length="255"
+                      name="Service Tier" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Duration Hours]"
+                      dataType="wstr"
+                      length="255"
+                      name="Duration Hours" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[SLA Target in Hours]"
+                      dataType="date"
+                      name="SLA Target in Hours" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Actual Duration in Hours]"
+                      dataType="date"
+                      name="Actual Duration in Hours" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Calculated SLA]"
+                      dataType="wstr"
+                      length="255"
+                      name="Calculated SLA" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Company]"
+                      dataType="wstr"
+                      length="255"
+                      name="Company" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Capability]"
+                      dataType="wstr"
+                      length="255"
+                      name="Capability" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[WE]"
+                      dataType="wstr"
+                      length="255"
+                      name="WE" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[IM Validation]"
+                      dataType="wstr"
+                      length="255"
+                      name="IM Validation" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[P1 P2 Validation]"
+                      dataType="wstr"
+                      length="255"
+                      name="P1 P2 Validation" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[P3 P4 Validation]"
+                      dataType="wstr"
+                      length="255"
+                      name="P3 P4 Validation" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[Validated SLA]"
+                      dataType="wstr"
+                      length="255"
+                      name="Validated SLA" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].ExternalColumns[MMTR Duration2]"
+                      dataType="date"
+                      name="MMTR Duration2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Incident ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Incident ID]"
+                      name="Incident ID" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Priority]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Priority]"
+                      name="Priority" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Category]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Category]"
+                      name="Category" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Sub Category]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Sub Category]"
+                      name="Sub Category" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Product Type]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Product Type]"
+                      name="Product Type" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Service Name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Service Name]"
+                      name="Service Name" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Status]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Status]"
+                      name="Status" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Assigned SPG]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Assigned SPG]"
+                      name="Assigned SPG" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Person Assigned]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Person Assigned]"
+                      name="Person Assigned" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Incident Title]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Incident Title]"
+                      name="Incident Title" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Met Resolve SLA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Met Resolve SLA]"
+                      name="Met Resolve SLA" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Closure Code]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Closure Code]"
+                      name="Closure Code" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Duplicate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Duplicate]"
+                      name="Duplicate" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Operator Name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Operator Name]"
+                      name="Operator Name" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Operator Source]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Operator Source]"
+                      name="Operator Source" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[SLA Attached]"
+                      dataType="date"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[SLA Attached]"
+                      name="SLA Attached" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Raised]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Raised]"
+                      name="Raised" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Duration]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Duration]"
+                      name="Duration" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Time to Restore]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Time to Restore]"
+                      name="Time to Restore" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Comments (Mins)]"
+                      dataType="r8"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Comments (Mins)]"
+                      name="Comments (Mins)" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Service Tier]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Service Tier]"
+                      name="Service Tier" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Duration Hours]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Duration Hours]"
+                      name="Duration Hours" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[SLA Target in Hours]"
+                      dataType="date"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[SLA Target in Hours]"
+                      name="SLA Target in Hours" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Actual Duration in Hours]"
+                      dataType="date"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Actual Duration in Hours]"
+                      name="Actual Duration in Hours" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Calculated SLA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Calculated SLA]"
+                      name="Calculated SLA" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Company]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Company]"
+                      name="Company" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Capability]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Capability]"
+                      name="Capability" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[WE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[WE]"
+                      name="WE" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[IM Validation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[IM Validation]"
+                      name="IM Validation" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[P1 P2 Validation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[P1 P2 Validation]"
+                      name="P1 P2 Validation" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[P3 P4 Validation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[P3 P4 Validation]"
+                      name="P3 P4 Validation" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Validated SLA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[Validated SLA]"
+                      name="Validated SLA" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[MMTR Duration2]"
+                      dataType="date"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[MMTR Duration2]"
+                      name="MMTR Duration2" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Excel To SQL\SQL Server Destination"
+              componentClassID="Microsoft.SQLServerDestination"
+              contactInfo="SQL Server Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5"
+              description="SQL Server Destination"
+              name="SQL Server Destination"
+              version="5">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.String"
+                  description="The name of the database object to copy data into."
+                  expressionType="Notify"
+                  name="BulkInsertTableName">[MetrixRawData]</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies that any constraints on the destination object are checked during the data copy operation. Corresponds to the bulk insert CHECK_CONSTRAINTS option."
+                  name="BulkInsertCheckConstraints">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of the first row to copy. Corresponds to the bulk insert FIRSTROW option."
+                  expressionType="Notify"
+                  name="BulkInsertFirstRow">-1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies that any insert triggers defined on the destination object will execute during the data copy. Corresponds to the bulk insert FIRE_TRIGGERS option."
+                  name="BulkInsertFireTriggers">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Corresponds to the bulk insert KEEPIDENTITY option."
+                  name="BulkInsertKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null copied to the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="BulkInsertKeepNulls">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of the last row to copy. Corresponds to the bulk insert LASTROW option."
+                  expressionType="Notify"
+                  name="BulkInsertLastRow">-1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of syntax errors and compilation errors that can occur before the data copy operation is canceled. Each row that cannot be copied is ignored and counted as one error. Corresponds to the bulk insert MAXERRORS option."
+                  name="BulkInsertMaxErrors">-1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies how the data to be copied is sorted. Corresponds to the bulk insert ORDER option."
+                  expressionType="Notify"
+                  name="BulkInsertOrder"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies that a table-level lock is acquired for the duration of the data copy operation. Corresponds to the bulk insert TABLOCK option."
+                  name="BulkInsertTablock">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies in seconds the amount of time the SQL Destination adapter will wait before terminating if there is no data available for insertion.  A timeout value of 0 means the SQL Destination adapter will not time out."
+                  expressionType="Notify"
+                  name="Timeout">30</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion."
+                  name="MaxInsertCommitSize">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Excel To SQL\SQL Server Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[IN5CD7031HG0\SUJEETSARKARSQL.SSISDemo]"
+                  connectionManagerRefId="Package.ConnectionManagers[IN5CD7031HG0\SUJEETSARKARSQL.SSISDemo]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input]"
+                  hasSideEffects="true"
+                  name="SQL Server Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Incident ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Incident ID"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Incident ID]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Incident ID]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Priority]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Priority"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Priority]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Priority]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Category]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Category"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Category]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Category]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Sub Category]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Sub Category"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Sub Category]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Sub Category]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Product Type]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Product Type"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Product Type]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Product Type]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Service Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Service Name"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Service Name]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Service Name]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Status]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Status]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Status]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Assigned SPG]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Assigned SPG"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Assigned SPG]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Assigned SPG]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Person Assigned]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Person Assigned"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Person Assigned]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Person Assigned]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Incident Title]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Incident Title"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Incident Title]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Incident Title]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Met Resolve SLA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Met Resolve SLA"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Met Resolve SLA]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Met Resolve SLA]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Closure Code]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Closure Code"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Closure Code]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Closure Code]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Duplicate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Duplicate"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Duplicate]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Duplicate]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Operator Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Operator Name"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Operator Name]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Operator Name]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Operator Source]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Operator Source"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Operator Source]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Operator Source]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[SLA Attached]"
+                      cachedDataType="date"
+                      cachedName="SLA Attached"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[SLA Attached]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[SLA Attached]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Raised]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Raised"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Raised]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Raised]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Duration]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Duration"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Duration]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Duration]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Time to Restore]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Time to Restore"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Time to Restore]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Time to Restore]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Comments (Mins)]"
+                      cachedDataType="r8"
+                      cachedName="Comments (Mins)"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Comments (Mins)]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Comments (Mins)]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Service Tier]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Service Tier"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Service Tier]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Service Tier]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Duration Hours]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Duration Hours"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Duration Hours]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Duration Hours]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[SLA Target in Hours]"
+                      cachedDataType="date"
+                      cachedName="SLA Target in Hours"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[SLA Target in Hours]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[SLA Target in Hours]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Actual Duration in Hours]"
+                      cachedDataType="date"
+                      cachedName="Actual Duration in Hours"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Actual Duration in Hours]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Actual Duration in Hours]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Calculated SLA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Calculated SLA"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Calculated SLA]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Calculated SLA]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Company]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Company"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Company]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Company]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Capability]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Capability"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Capability]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Capability]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[WE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="WE"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[WE]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[WE]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[IM Validation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="IM Validation"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[IM Validation]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[IM Validation]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[P1 P2 Validation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="P1 P2 Validation"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[P1 P2 Validation]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[P1 P2 Validation]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[P3 P4 Validation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="P3 P4 Validation"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[P3 P4 Validation]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[P3 P4 Validation]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Validated SLA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Validated SLA"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Validated SLA]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[Validated SLA]" />
+                    <inputColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[MMTR Duration2]"
+                      cachedDataType="date"
+                      cachedName="MMTR Duration2"
+                      externalMetadataColumnId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[MMTR Duration2]"
+                      lineageId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output].Columns[MMTR Duration2]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Incident ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Incident ID" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Priority]"
+                      dataType="wstr"
+                      length="255"
+                      name="Priority" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Category]"
+                      dataType="wstr"
+                      length="255"
+                      name="Category" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Sub Category]"
+                      dataType="wstr"
+                      length="255"
+                      name="Sub Category" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Product Type]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product Type" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Service Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Service Name" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Status]"
+                      dataType="wstr"
+                      length="255"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Assigned SPG]"
+                      dataType="wstr"
+                      length="255"
+                      name="Assigned SPG" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Person Assigned]"
+                      dataType="wstr"
+                      length="255"
+                      name="Person Assigned" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Incident Title]"
+                      dataType="wstr"
+                      length="255"
+                      name="Incident Title" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Met Resolve SLA]"
+                      dataType="wstr"
+                      length="255"
+                      name="Met Resolve SLA" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Closure Code]"
+                      dataType="wstr"
+                      length="255"
+                      name="Closure Code" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Duplicate]"
+                      dataType="wstr"
+                      length="255"
+                      name="Duplicate" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Operator Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Operator Name" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Operator Source]"
+                      dataType="wstr"
+                      length="255"
+                      name="Operator Source" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Completed Date]"
+                      dataType="dbTimeStamp"
+                      name="Completed Date" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[SLA Attached]"
+                      dataType="dbTimeStamp"
+                      name="SLA Attached" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Raised]"
+                      dataType="wstr"
+                      length="255"
+                      name="Raised" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Duration]"
+                      dataType="wstr"
+                      length="255"
+                      name="Duration" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Time to Restore]"
+                      dataType="wstr"
+                      length="255"
+                      name="Time to Restore" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Comments (Mins)]"
+                      dataType="r8"
+                      name="Comments (Mins)" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Service Tier]"
+                      dataType="wstr"
+                      length="255"
+                      name="Service Tier" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Duration Hours]"
+                      dataType="wstr"
+                      length="255"
+                      name="Duration Hours" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[SLA Target in Hours]"
+                      dataType="dbTimeStamp"
+                      name="SLA Target in Hours" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Actual Duration in Hours]"
+                      dataType="dbTimeStamp"
+                      name="Actual Duration in Hours" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Calculated SLA]"
+                      dataType="wstr"
+                      length="255"
+                      name="Calculated SLA" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Company]"
+                      dataType="wstr"
+                      length="255"
+                      name="Company" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Capability]"
+                      dataType="wstr"
+                      length="255"
+                      name="Capability" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[WE]"
+                      dataType="wstr"
+                      length="255"
+                      name="WE" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[IM Validation]"
+                      dataType="wstr"
+                      length="255"
+                      name="IM Validation" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[P1 P2 Validation]"
+                      dataType="wstr"
+                      length="255"
+                      name="P1 P2 Validation" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[P3 P4 Validation]"
+                      dataType="wstr"
+                      length="255"
+                      name="P3 P4 Validation" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Validated SLA]"
+                      dataType="wstr"
+                      length="255"
+                      name="Validated SLA" />
+                    <externalMetadataColumn
+                      refId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[MMTR Duration2]"
+                      dataType="dbTimeStamp"
+                      name="MMTR Duration2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Excel To SQL.Paths[Excel Source Output]"
+              endId="Package\Excel To SQL\SQL Server Destination.Inputs[SQL Server Destination Input]"
+              name="Excel Source Output"
+              startId="Package\Excel To SQL\Excel Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Excel To SQL"
+          TopLeft="385,43" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Excel To SQL">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Excel To SQL\Excel Source"
+          TopLeft="73,53" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Excel To SQL\SQL Server Destination"
+          TopLeft="607,88" />
+        <EdgeLayout
+          Id="Package\Excel To SQL.Paths[Excel Source Output]"
+          TopLeft="212,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="395,35"
+              Start="0,0"
+              End="387.5,35">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="193.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="193.5,0"
+                    Point2="197.5,0"
+                    Point3="197.5,4" />
+                  <mssgle:LineSegment
+                    End="197.5,31" />
+                  <mssgle:CubicBezierSegment
+                    Point1="197.5,31"
+                    Point2="197.5,35"
+                    Point3="201.5,35" />
+                  <mssgle:LineSegment
+                    End="387.5,35" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Excel To SQL\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Excel To SQL\SQL Server Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2431 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/26/2018 10:40:04 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IN5CD7031HG0"
+  DTS:CreatorName="EAD\skumar2018"
+  DTS:DTSID="{F647E77B-3ABC-4460-8EC7-60817ADB8959}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.101"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{4D721A22-CDA4-4003-B72E-6211F7AE3227}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{A83E55BE-B6B9-4D00-9374-56B0BE4DF686}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.15.0;Data Source=C:\Users\skumar2018\Documents\DBToFile.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DF Scripting"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{20D70D99-E682-4E3F-878E-8BE54CDAD879}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF Scripting"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF Scripting\DataReaderDest"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Exposes data in a data flow to other applications by using the ADO.NET DataReader interface. For example, send data to a custom application, written in C#, that requires a DataReader interface.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Exposes data in a data flow to other applications by using the ADO.NET DataReader interface. For example, send data to a custom application, written in C#, that requires a DataReader interface."
+              name="DataReaderDest">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of milliseconds before the component times out."
+                  name="ReadTimeout">30000</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies an object that implements the IDataReader interface."
+                  name="DataReader" />
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the component fails when a read time-out occurs."
+                  name="FailOnTimeout">false</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderDestinationAdapter</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DF Scripting\DataReaderDest.Inputs[DataReader Destination Input]"
+                  hasSideEffects="true"
+                  name="DataReader Destination Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\DF Scripting\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Employee_Excel</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF Scripting\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[CustomerKey]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[CustomerKey]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[CustomerKey]"
+                      name="CustomerKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[GeographyKey]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[GeographyKey]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[GeographyKey]"
+                      name="GeographyKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[CustomerAlternateKey]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[CustomerAlternateKey]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[CustomerAlternateKey]"
+                      name="CustomerAlternateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[Title]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[Title]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[Title]"
+                      name="Title"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[FirstName]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[MiddleName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[MiddleName]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[MiddleName]"
+                      name="MiddleName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[LastName]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[NameStyle]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[NameStyle]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[NameStyle]"
+                      name="NameStyle"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[BirthDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[BirthDate]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[BirthDate]"
+                      name="BirthDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[MaritalStatus]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[MaritalStatus]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[MaritalStatus]"
+                      name="MaritalStatus"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[Suffix]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[Suffix]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[Suffix]"
+                      name="Suffix"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[Gender]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[Gender]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[Gender]"
+                      name="Gender"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[EmailAddress]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[EmailAddress]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[EmailAddress]"
+                      name="EmailAddress"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[YearlyIncome]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[YearlyIncome]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[YearlyIncome]"
+                      name="YearlyIncome"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[TotalChildren]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[TotalChildren]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[TotalChildren]"
+                      name="TotalChildren"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[NumberChildrenAtHome]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[NumberChildrenAtHome]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[NumberChildrenAtHome]"
+                      name="NumberChildrenAtHome"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[EnglishEducation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[EnglishEducation]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[EnglishEducation]"
+                      name="EnglishEducation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[SpanishEducation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[SpanishEducation]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[SpanishEducation]"
+                      name="SpanishEducation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[FrenchEducation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[FrenchEducation]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[FrenchEducation]"
+                      name="FrenchEducation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[EnglishOccupation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[EnglishOccupation]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[EnglishOccupation]"
+                      name="EnglishOccupation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[SpanishOccupation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[SpanishOccupation]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[SpanishOccupation]"
+                      name="SpanishOccupation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[FrenchOccupation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[FrenchOccupation]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[FrenchOccupation]"
+                      name="FrenchOccupation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[HouseOwnerFlag]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[HouseOwnerFlag]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[HouseOwnerFlag]"
+                      name="HouseOwnerFlag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[NumberCarsOwned]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[NumberCarsOwned]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[NumberCarsOwned]"
+                      name="NumberCarsOwned"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[AddressLine1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[AddressLine1]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[AddressLine1]"
+                      name="AddressLine1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[AddressLine2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[AddressLine2]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[AddressLine2]"
+                      name="AddressLine2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[Phone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[Phone]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[Phone]"
+                      name="Phone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[DateFirstPurchase]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[DateFirstPurchase]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[DateFirstPurchase]"
+                      name="DateFirstPurchase"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[CommuteDistance]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[CommuteDistance]"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[CommuteDistance]"
+                      name="CommuteDistance"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[CustomerKey]"
+                      dataType="wstr"
+                      length="255"
+                      name="CustomerKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[GeographyKey]"
+                      dataType="wstr"
+                      length="255"
+                      name="GeographyKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[CustomerAlternateKey]"
+                      dataType="wstr"
+                      length="255"
+                      name="CustomerAlternateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[Title]"
+                      dataType="wstr"
+                      length="255"
+                      name="Title" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="255"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[MiddleName]"
+                      dataType="wstr"
+                      length="255"
+                      name="MiddleName" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="255"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[NameStyle]"
+                      dataType="wstr"
+                      length="255"
+                      name="NameStyle" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[BirthDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="BirthDate" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[MaritalStatus]"
+                      dataType="wstr"
+                      length="255"
+                      name="MaritalStatus" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[Suffix]"
+                      dataType="wstr"
+                      length="255"
+                      name="Suffix" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      name="Gender" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[EmailAddress]"
+                      dataType="wstr"
+                      length="255"
+                      name="EmailAddress" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[YearlyIncome]"
+                      dataType="wstr"
+                      length="255"
+                      name="YearlyIncome" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[TotalChildren]"
+                      dataType="wstr"
+                      length="255"
+                      name="TotalChildren" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[NumberChildrenAtHome]"
+                      dataType="wstr"
+                      length="255"
+                      name="NumberChildrenAtHome" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[EnglishEducation]"
+                      dataType="wstr"
+                      length="255"
+                      name="EnglishEducation" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[SpanishEducation]"
+                      dataType="wstr"
+                      length="255"
+                      name="SpanishEducation" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[FrenchEducation]"
+                      dataType="wstr"
+                      length="255"
+                      name="FrenchEducation" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[EnglishOccupation]"
+                      dataType="wstr"
+                      length="255"
+                      name="EnglishOccupation" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[SpanishOccupation]"
+                      dataType="wstr"
+                      length="255"
+                      name="SpanishOccupation" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[FrenchOccupation]"
+                      dataType="wstr"
+                      length="255"
+                      name="FrenchOccupation" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[HouseOwnerFlag]"
+                      dataType="wstr"
+                      length="255"
+                      name="HouseOwnerFlag" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[NumberCarsOwned]"
+                      dataType="wstr"
+                      length="255"
+                      name="NumberCarsOwned" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[AddressLine1]"
+                      dataType="wstr"
+                      length="255"
+                      name="AddressLine1" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[AddressLine2]"
+                      dataType="wstr"
+                      length="255"
+                      name="AddressLine2" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="255"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[DateFirstPurchase]"
+                      dataType="wstr"
+                      length="255"
+                      name="DateFirstPurchase" />
+                    <externalMetadataColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].ExternalColumns[CommuteDistance]"
+                      dataType="wstr"
+                      length="255"
+                      name="CommuteDistance" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[CustomerKey]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[CustomerKey]"
+                      name="CustomerKey" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[GeographyKey]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[GeographyKey]"
+                      name="GeographyKey" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[CustomerAlternateKey]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[CustomerAlternateKey]"
+                      name="CustomerAlternateKey" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[Title]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[Title]"
+                      name="Title" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[MiddleName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[MiddleName]"
+                      name="MiddleName" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[NameStyle]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[NameStyle]"
+                      name="NameStyle" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[BirthDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[BirthDate]"
+                      name="BirthDate" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[MaritalStatus]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[MaritalStatus]"
+                      name="MaritalStatus" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[Suffix]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[Suffix]"
+                      name="Suffix" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[Gender]"
+                      name="Gender" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[EmailAddress]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[EmailAddress]"
+                      name="EmailAddress" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[YearlyIncome]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[YearlyIncome]"
+                      name="YearlyIncome" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[TotalChildren]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[TotalChildren]"
+                      name="TotalChildren" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[NumberChildrenAtHome]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[NumberChildrenAtHome]"
+                      name="NumberChildrenAtHome" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[EnglishEducation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[EnglishEducation]"
+                      name="EnglishEducation" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[SpanishEducation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[SpanishEducation]"
+                      name="SpanishEducation" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[FrenchEducation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[FrenchEducation]"
+                      name="FrenchEducation" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[EnglishOccupation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[EnglishOccupation]"
+                      name="EnglishOccupation" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[SpanishOccupation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[SpanishOccupation]"
+                      name="SpanishOccupation" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[FrenchOccupation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[FrenchOccupation]"
+                      name="FrenchOccupation" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[HouseOwnerFlag]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[HouseOwnerFlag]"
+                      name="HouseOwnerFlag" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[NumberCarsOwned]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[NumberCarsOwned]"
+                      name="NumberCarsOwned" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[AddressLine1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[AddressLine1]"
+                      name="AddressLine1" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[AddressLine2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[AddressLine2]"
+                      name="AddressLine2" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[Phone]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[Phone]"
+                      name="Phone" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[DateFirstPurchase]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[DateFirstPurchase]"
+                      name="DateFirstPurchase" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[CommuteDistance]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[CommuteDistance]"
+                      name="CommuteDistance" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF Scripting\Script Component"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;11"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="Script Component"
+              version="11">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+
+    #region Help:  Using Integration Services Connnection Managers
+    /* Some types of connection managers can be used in this script component.  See the help topic
+     * "Working with Connection Managers Programatically" for details.
+     *
+     * To use a connection manager in this script, first ensure that the connection manager has
+     * been added to either the list of connection managers on the Connection Managers page of the
+     * script component editor.  To add the connection manager, save this script, close this instance of
+     * Visual Studio, and add the Connection Manager to the list.
+     *
+     * If the component needs to hold a connection open while processing rows, override the
+     * AcquireConnections and ReleaseConnections methods.
+     * 
+     * Example of using an ADO.Net connection manager to acquire a SqlConnection:
+     *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
+     *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
+     *
+     * Example of using a File connection manager to acquire a file path:
+     *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
+     *  string filePath = (string)rawConnection;
+     *
+     * Example of releasing a connection manager:
+     *  Connections.SalesDB.ReleaseConnection(rawConnection);
+     */
+    #endregion
+
+    #region Help:  Firing Integration Services Events
+    /* This script component can fire events.
+     *
+     * Example of firing an error event:
+     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+     *
+     * Example of firing an information event:
+     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+     *
+     * Example of firing a warning event:
+     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+     */
+    #endregion
+
+    /// <summary>
+    /// This method is called once, before rows begin to be processed in the data flow.
+    ///
+    /// You can remove this method if you don't need to do anything here.
+    /// </summary>
+    public override void PreExecute()
+    {
+        base.PreExecute();
+        /*
+         * Add your code here
+         */
+    }
+
+    /// <summary>
+    /// This method is called after all the rows have passed through this component.
+    ///
+    /// You can delete this method if you don't need to do anything here.
+    /// </summary>
+    public override void PostExecute()
+    {
+        base.PostExecute();
+        /*
+         * Add your code here
+         */
+    }
+
+    /// <summary>
+    /// This method is called once for every row that passes through the component from Input0.
+    ///
+    /// Example of reading a value from a column in the the row:
+    ///  string zipCode = Row.ZipCode
+    ///
+    /// Example of writing a value to a column in the row:
+    ///  Row.ZipCode = zipCode
+    /// </summary>
+    /// <param name="Row">The row that is currently passing through the component</param>
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+        /*
+         * Add your code here
+         */
+
+        string Name = Row.FirstName;
+        Row.ProcessedData = Name + "Sujeet";
+
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String CustomerKey
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[0]);
+        }
+    }
+    public bool CustomerKey_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public String GeographyKey
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[1]);
+        }
+    }
+    public bool GeographyKey_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public String CustomerAlternateKey
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[2]);
+        }
+    }
+    public bool CustomerAlternateKey_IsNull
+    {
+        get
+        {
+            return IsNull(2);
+        }
+    }
+
+    public String Title
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[3]);
+        }
+    }
+    public bool Title_IsNull
+    {
+        get
+        {
+            return IsNull(3);
+        }
+    }
+
+    public String FirstName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[4]);
+        }
+    }
+    public bool FirstName_IsNull
+    {
+        get
+        {
+            return IsNull(4);
+        }
+    }
+
+    public String MiddleName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[5]);
+        }
+    }
+    public bool MiddleName_IsNull
+    {
+        get
+        {
+            return IsNull(5);
+        }
+    }
+
+    public String LastName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[6]);
+        }
+    }
+    public bool LastName_IsNull
+    {
+        get
+        {
+            return IsNull(6);
+        }
+    }
+
+    public String NameStyle
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[7]);
+        }
+    }
+    public bool NameStyle_IsNull
+    {
+        get
+        {
+            return IsNull(7);
+        }
+    }
+
+    public String BirthDate
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[8]);
+        }
+    }
+    public bool BirthDate_IsNull
+    {
+        get
+        {
+            return IsNull(8);
+        }
+    }
+
+    public String MaritalStatus
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[9]);
+        }
+    }
+    public bool MaritalStatus_IsNull
+    {
+        get
+        {
+            return IsNull(9);
+        }
+    }
+
+    public String Suffix
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[10]);
+        }
+    }
+    public bool Suffix_IsNull
+    {
+        get
+        {
+            return IsNull(10);
+        }
+    }
+
+    public String Gender
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[11]);
+        }
+    }
+    public bool Gender_IsNull
+    {
+        get
+        {
+            return IsNull(11);
+        }
+    }
+
+    public String EmailAddress
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[12]);
+        }
+    }
+    public bool EmailAddress_IsNull
+    {
+        get
+        {
+            return IsNull(12);
+        }
+    }
+
+    public String YearlyIncome
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[13]);
+        }
+    }
+    public bool YearlyIncome_IsNull
+    {
+        get
+        {
+            return IsNull(13);
+        }
+    }
+
+    public String TotalChildren
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[14]);
+        }
+    }
+    public bool TotalChildren_IsNull
+    {
+        get
+        {
+            return IsNull(14);
+        }
+    }
+
+    public String NumberChildrenAtHome
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[15]);
+        }
+    }
+    public bool NumberChildrenAtHome_IsNull
+    {
+        get
+        {
+            return IsNull(15);
+        }
+    }
+
+    public String EnglishEducation
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[16]);
+        }
+    }
+    public bool EnglishEducation_IsNull
+    {
+        get
+        {
+            return IsNull(16);
+        }
+    }
+
+    public String SpanishEducation
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[17]);
+        }
+    }
+    public bool SpanishEducation_IsNull
+    {
+        get
+        {
+            return IsNull(17);
+        }
+    }
+
+    public String FrenchEducation
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[18]);
+        }
+    }
+    public bool FrenchEducation_IsNull
+    {
+        get
+        {
+            return IsNull(18);
+        }
+    }
+
+    public String EnglishOccupation
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[19]);
+        }
+    }
+    public bool EnglishOccupation_IsNull
+    {
+        get
+        {
+            return IsNull(19);
+        }
+    }
+
+    public String SpanishOccupation
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[20]);
+        }
+    }
+    public bool SpanishOccupation_IsNull
+    {
+        get
+        {
+            return IsNull(20);
+        }
+    }
+
+    public String FrenchOccupation
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[21]);
+        }
+    }
+    public bool FrenchOccupation_IsNull
+    {
+        get
+        {
+            return IsNull(21);
+        }
+    }
+
+    public String HouseOwnerFlag
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[22]);
+        }
+    }
+    public bool HouseOwnerFlag_IsNull
+    {
+        get
+        {
+            return IsNull(22);
+        }
+    }
+
+    public String NumberCarsOwned
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[23]);
+        }
+    }
+    public bool NumberCarsOwned_IsNull
+    {
+        get
+        {
+            return IsNull(23);
+        }
+    }
+
+    public String AddressLine1
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[24]);
+        }
+    }
+    public bool AddressLine1_IsNull
+    {
+        get
+        {
+            return IsNull(24);
+        }
+    }
+
+    public String AddressLine2
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[25]);
+        }
+    }
+    public bool AddressLine2_IsNull
+    {
+        get
+        {
+            return IsNull(25);
+        }
+    }
+
+    public String Phone
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[26]);
+        }
+    }
+    public bool Phone_IsNull
+    {
+        get
+        {
+            return IsNull(26);
+        }
+    }
+
+    public String DateFirstPurchase
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[27]);
+        }
+    }
+    public bool DateFirstPurchase_IsNull
+    {
+        get
+        {
+            return IsNull(27);
+        }
+    }
+
+    public String CommuteDistance
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[28]);
+        }
+    }
+    public bool CommuteDistance_IsNull
+    {
+        get
+        {
+            return IsNull(28);
+        }
+    }
+
+    public String ProcessedData
+    {
+        set
+        {
+            this[29] = value;
+        }
+    }
+    public bool ProcessedData_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(29);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_a7976b79874445588c05c4e90e67cebc.Properties.Settings.get_Default():SC_a7976b79874445588c05c4e90e67cebc.Properties.Sett" +
+    "ings")]
+
+namespace SC_a7976b79874445588c05c4e90e67cebc.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>SC_a7976b79874445588c05c4e90e67cebc</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>SC_a7976b79874445588c05c4e90e67cebc</msb:DisplayName>
+    <msb:ProjectId>{7DDEAA60-2B5C-4A7B-8131-C00CEB01D90F}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="SC_a7976b79874445588c05c4e90e67cebc.csproj" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+    <msb:File Include="main.cs" />
+    <msb:File Include="BufferWrapper.cs" />
+    <msb:File Include="ComponentWrapper.cs" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_a7976b79874445588c05c4e90e67cebc")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_a7976b79874445588c05c4e90e67cebc")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.0.0")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_a7976b79874445588c05c4e90e67cebc.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5071fee2-1d3e-4c7f-91c0-db23a3bd076f}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_a7976b79874445588c05c4e90e67cebc</RootNamespace>
+    <AssemblyName>SC_a7976b79874445588c05c4e90e67cebc</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="ScriptComponent" GeneratedNamespace="SC_a7976b79874445588c05c4e90e67cebc" IconIndex="0"></Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC140</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_a7976b79874445588c05c4e90e67cebc.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_a7976b79874445588c05c4e90e67cebc.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_a7976b79874445588c05c4e90e67cebc.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_a7976b79874445588c05c4e90e67cebc.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_a7976b79874445588c05c4e90e67cebc.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_a7976b79874445588c05c4e90e67cebc.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAPwiq1sAAAAAAAAAAOAAIiALATAAACAAAAAIAAAAAAAAmj8A
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAEg/AABPAAAAAEAAAEgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAoB8AAAAgAAAAIAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAEgEAAAAQAAAAAYAAAAiAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAKAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAB8
+PwAAAAAAAEgAAAACAAUAMCUAAGAZAAABAAAAAAAAAJA+AAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKBAAAAoqHgIoEQAACioTMAMAGQAAAAEAABEDbw4AAAYK
+AwZyAQAAcCgSAAAKb0AAAAYqHgIoRAAABioqAgMEBSgTAAAKKlICexQAAAoCexUAAAoWlG8WAAAK
+KiICFigXAAAKKlICexQAAAoCexUAAAoXlG8WAAAKKiICFygXAAAKKlICexQAAAoCexUAAAoYlG8W
+AAAKKiICGCgXAAAKKlICexQAAAoCexUAAAoZlG8WAAAKKiICGSgXAAAKKlICexQAAAoCexUAAAoa
+lG8WAAAKKiICGigXAAAKKlICexQAAAoCexUAAAoblG8WAAAKKiICGygXAAAKKlICexQAAAoCexUA
+AAoclG8WAAAKKiICHCgXAAAKKlICexQAAAoCexUAAAodlG8WAAAKKiICHSgXAAAKKlICexQAAAoC
+exUAAAoelG8WAAAKKiICHigXAAAKKlYCexQAAAoCexUAAAofCZRvFgAACiomAh8JKBcAAAoqVgJ7
+FAAACgJ7FQAACh8KlG8WAAAKKiYCHwooFwAACipWAnsUAAAKAnsVAAAKHwuUbxYAAAoqJgIfCygX
+AAAKKlYCexQAAAoCexUAAAofDJRvFgAACiomAh8MKBcAAAoqVgJ7FAAACgJ7FQAACh8NlG8WAAAK
+KiYCHw0oFwAACipWAnsUAAAKAnsVAAAKHw6UbxYAAAoqJgIfDigXAAAKKlYCexQAAAoCexUAAAof
+D5RvFgAACiomAh8PKBcAAAoqVgJ7FAAACgJ7FQAACh8QlG8WAAAKKiYCHxAoFwAACipWAnsUAAAK
+AnsVAAAKHxGUbxYAAAoqJgIfESgXAAAKKlYCexQAAAoCexUAAAofEpRvFgAACiomAh8SKBcAAAoq
+VgJ7FAAACgJ7FQAACh8TlG8WAAAKKiYCHxMoFwAACipWAnsUAAAKAnsVAAAKHxSUbxYAAAoqJgIf
+FCgXAAAKKlYCexQAAAoCexUAAAofFZRvFgAACiomAh8VKBcAAAoqVgJ7FAAACgJ7FQAACh8WlG8W
+AAAKKiYCHxYoFwAACipWAnsUAAAKAnsVAAAKHxeUbxYAAAoqJgIfFygXAAAKKlYCexQAAAoCexUA
+AAofGJRvFgAACiomAh8YKBcAAAoqVgJ7FAAACgJ7FQAACh8ZlG8WAAAKKiYCHxkoFwAACipWAnsU
+AAAKAnsVAAAKHxqUbxYAAAoqJgIfGigXAAAKKlYCexQAAAoCexUAAAofG5RvFgAACiomAh8bKBcA
+AAoqVgJ7FAAACgJ7FQAACh8clG8WAAAKKiYCHxwoFwAACioqAh8dAygYAAAKKl4DLAkCHx0oGQAA
+CipyDwAAcHMaAAAKeh4CKBsAAAoqHgIoHAAACip+AigdAAAKAgJzSAAABn0BAAAEAgJzSQAABn0C
+AAAEKpIEcqwAAHAabx4AAAosFQIFAgMoHwAACg4EcwUAAAZvRgAABipKKwcCA29HAAAGA29CAAAG
+LfEqBio6AiggAAAKAgN9AwAABCo6AiggAAAKAgN9BAAABCoeAiggAAAKKq5+BQAABC0ecrwAAHDQ
+BwAAAighAAAKbyIAAApzIwAACoAFAAAEfgUAAAQqGn4GAAAEKh4CgAYAAAQqGn4HAAAEKh4CKCQA
+AAoqLnNPAAAGgAcAAAQqAEJTSkIBAAEAAAAAAAwAAAB2NC4wLjMwMzE5AAAAAAUAbAAAACALAAAj
+fgAAjAsAAOgKAAAjU3RyaW5ncwAAAAB0FgAAMAEAACNVUwCkFwAAEAAAACNHVUlEAAAAtBcAAKwB
+AAAjQmxvYgAAAAAAAAACAAABVxWiAQkBAAAA+gEzABYAAAEAAAAfAAAACAAAAAcAAABQAAAADwAA
+ACQAAAAQAAAAAQAAAAMAAAA/AAAAQAAAAAEAAAAEAAAAAQAAAAAA9gMBAAAAAAAGANoCsAgGAG4D
+sAgGACYCnQgPACQJAAAGAFMC5wcGAL0C5wcGAJ4C5wcGAFUD5wcGAPoC5wcGABMD5wcGAGoC5wcG
+AIUCvAMKAC4DRQEKAG8IRQEOAGAIRQEKADAIRQEKABQKRQEGANcJDgcGAAkCnQgGAIAI0AgGACQI
+0gcSANkB4AMSADoC4AMSAJ0BvQcGAO4BsAgGANkDDgcGAPkHDgcGABMIDgcGAHABDgcGAKsADgcG
+AN4K5wcAAAAAIwAAAAAAAQABAAEAEAAzBwAAEAABAAEAAQAQAFMIAAA5AAEABQABABAA9gkAAEUA
+AQBEAAEAEAChCQAASQADAEgAAQAQAGIJAABJAAQASQAAABAA1wgzCUkABQBKAAABEACRCTMJYQAH
+AE4ABgChCX0ABgBiCYEAAQAECoUAAQAECoUAEQAVB4kAEQCNAY0AEQCbAJEAUCAAAAAAxgCMAwYA
+AQBYIAAAAADGAJcDBgABAGAgAAAAAMYAdgqVAAEAhSAAAAAAhhiQCAYAAgCNIAAAAACGGJAIJQAC
+AJggAAAAAIYIuQqbAAUArSAAAAAAhgjOBkcABQC2IAAAAACGCMkKmwAFAMsgAAAAAIYI5QZHAAUA
+1CAAAAAAhgigCpsABQDpIAAAAACGCK4GRwAFAPIgAAAAAIYIzwCbAAUAByEAAAAAhgidBEcABQAQ
+IQAAAACGCAMBmwAFACUhAAAAAIYI7QRHAAUALiEAAAAAhgjnAJsABQBDIQAAAACGCMMERwAFAEwh
+AAAAAIYI9gCbAAUAYSEAAAAAhgjZBEcABQBqIQAAAACGCNkAmwAFAH8hAAAAAIYIrgRHAAUAiCEA
+AAAAhgjLAZsABQCdIQAAAACGCGgFRwAFAKYhAAAAAIYIvgmbAAUAvCEAAAAAhgiDBkcABQDGIQAA
+AACGCJUKmwAFANwhAAAAAIYInAZHAAUA5iEAAAAAhghICJsABQD8IQAAAACGCFkGRwAFAAYiAAAA
+AIYIrQmbAAUAHCIAAAAAhghrBkcABQAmIgAAAACGCDQBmwAFADwiAAAAAIYIIgVHAAUARiIAAAAA
+hgghB5sABQBcIgAAAACGCJcFRwAFAGYiAAAAAIYIGwGbAAUAfCIAAAAAhggCBUcABQCGIgAAAACG
+CFIHmwAFAJwiAAAAAIYIywVHAAUApiIAAAAAhghnB5sABQC8IgAAAACGCOcFRwAFAMYiAAAAAIYI
+PgebAAUA3CIAAAAAhgiwBUcABQDmIgAAAACGCJEHmwAFAPwiAAAAAIYIHwZHAAUABiMAAAAAhgin
+B5sABQAcIwAAAACGCDwGRwAFACYjAAAAAIYIfAebAAUAPCMAAAAAhggDBkcABQBGIwAAAACGCKkD
+mwAFAFwjAAAAAIYIfQVHAAUAZiMAAAAAhghzAJsABQB8IwAAAACGCGcERwAFAIYjAAAAAIYIAQCb
+AAUAnCMAAAAAhggeBEcABQCmIwAAAACGCBIAmwAFALwjAAAAAIYINgRHAAUAxiMAAAAAhghmAZsA
+BQDcIwAAAACGCDoFRwAFAOYjAAAAAIYItQGbAAUA/CMAAAAAhghLBUcABQAGJAAAAACGCIcAmwAF
+ABwkAAAAAIYIggRHAAUAJiQAAAAAhgg0ABAABQAxJAAAAACGCE4EnwAGAEkkAAAAAIYAjQpHAAcA
+USQAAAAAhgDeCUcABwBZJAAAAACGGJAIBgAHAHkkAAAAAMYAaQqkAAcAniQAAAAAxgFiCpUACwCx
+JAAAAADGAXYKlQAMALMkAAAAAIYYkAiuAA0AwiQAAAAAhhiQCK4ADgDRJAAAAACDGJAIBgAPANkk
+AAAAAJMIfAi0AA8ABSUAAAAAkwh1AbkADwAMJQAAAACTCIEBvgAPABQlAAAAAJYI6gnEABAAGyUA
+AAAAhhiQCAYAEAAjJQAAAACRGJYIyQAQAAAAAQCRCgAAAQB1CAAAAgBsCQAAAwA+CAAAAQCjAwAA
+AQCjAwAAAQAsAAAAAgARAQAAAwB1CAAABAA+CAAAAQB1CAAAAQCRCgAAAQAaCgAAAQAaCgAAAQCj
+AwkAkAgBABEAkAgGABkAkAgKACkAkAgQADEAkAgQADkAkAgQAEEAkAgQAEkAkAgQAFEAkAgQAFkA
+kAgQAGEAkAgQAGkAkAgGAJkAkAgGALkAkAgVAMkAkAgGAIkAjAMGAIkAlwMGANEA0AkfAHEAkAgl
+AHEAdQgvAHEAbAkzAHkA1gM3AHEA9gY8AHEABQdBAHEA/QYBANkAkAgQAHEAjQpHAHEA3glHAIkA
+kAgGANEAmglLAIkAgAlSAJEAkAgGAOkAvQBYAOkA2gpfAKEAkAhkAMEAkAgGAC4ACwDkAC4AEwDt
+AC4AGwAMAS4AIwAVAS4AKwA+AS4AMwA+AS4AOwA+AS4AQwAVAS4ASwBEAS4AUwA+AS4AWwBbAUMA
+YwClAeEAewClAeMAawClAakHcwAMAckHcwAMARsAAwABAAcAPQAIAD8AAAC9Cs0AAADSBtEAAADN
+Cs0AAADpBtEAAACkCs0AAACyBtEAAADTAM0AAAChBNEAAAAHAc0AAADxBNEAAADrAM0AAADHBNEA
+AAD6AM0AAADdBNEAAADdAM0AAACyBNEAAADPAc0AAABsBdEAAADCCc0AAACHBtEAAACZCs0AAACg
+BtEAAABMCM0AAABdBtEAAACxCc0AAABvBtEAAAA4Ac0AAAAmBdEAAAAlB80AAACbBdEAAAAfAc0A
+AAAGBdEAAABWB80AAADPBdEAAABrB80AAADrBdEAAABCB80AAAC0BdEAAACVB80AAAAjBtEAAACr
+B80AAABABtEAAACAB80AAAAHBtEAAACtA80AAACBBdEAAAB3AM0AAABrBNEAAAAFAM0AAAAiBNEA
+AAAWAM0AAAA6BNEAAABqAc0AAAA+BdEAAAC5Ac0AAABPBdEAAACLAM0AAACGBNEAAAA4AM0AAABS
+BNEAAACACNUAAACVAdoAAADuCd8AAgAGAAMAAgAHAAUAAgAIAAcAAgAJAAkAAgAKAAsAAgALAA0A
+AgAMAA8AAgANABEAAgAOABMAAgAPABUAAgAQABcAAgARABkAAgASABsAAgATAB0AAgAUAB8AAgAV
+ACEAAgAWACMAAgAXACUAAgAYACcAAgAZACkAAgAaACsAAgAbAC0AAgAcAC8AAgAdADEAAgAeADMA
+AgAfADUAAgAgADcAAgAhADkAAgAiADsAAgAjAD0AAgAkAD8AAgAlAEEAAgAmAEMAAgAnAEUAAgAo
+AEcAAgApAEkAAgAqAEsAAgArAE0AAgAsAE8AAgAtAFEAAgAuAFMAAgAvAFUAAgAwAFcAAgAxAFkA
+AgAyAFsAAgAzAF0AAgA0AF8AAgA1AGEAAgA2AGMAAgA3AGUAAgA4AGcAAgA5AGkAAgA6AGsAAgA7
+AG0AAgA8AG8AAgA9AHEAAgA+AHMAAgA/AHUAAQBAAHcAAQBBAHkAAgBLAHsAAgBMAH0AAQBNAH0A
+AgBOAH8ABIAAAAEAAAAAAAAAAAAAAAAATwAAAAQAAAAAAAAAAAAAAGsARgAAAAAADgAAAAAAAAAA
+AAAAdAAkCgAAAAAOAAAAAAAAAAAAAAB0AEEKAAAAAAQAAAAAAAAAAAAAAGsADgcAAAAAAAAAAAEA
+AADhCAAAAAAAZ2V0X0FkZHJlc3NMaW5lMQBnZXRfQWRkcmVzc0xpbmUyADxNb2R1bGU+AElucHV0
+SUQAc2V0X1Byb2Nlc3NlZERhdGEAbXNjb3JsaWIAU0NfYTc5NzZiNzk4NzQ0NDU1ODhjMDVjNGU5
+MGU2N2NlYmMAZ2V0X051bWJlckNhcnNPd25lZABnZXRfQ29tbXV0ZURpc3RhbmNlAGRlZmF1bHRJ
+bnN0YW5jZQBSdW50aW1lVHlwZUhhbmRsZQBHZXRUeXBlRnJvbUhhbmRsZQBnZXRfVGl0bGUAZ2V0
+X05hbWVTdHlsZQBnZXRfTWlkZGxlTmFtZQBnZXRfTGFzdE5hbWUAZ2V0X0ZpcnN0TmFtZQBJbnB1
+dE5hbWUAZ2V0X051bWJlckNoaWxkcmVuQXRIb21lAGdldF9ZZWFybHlJbmNvbWUATWljcm9zb2Z0
+LlNxbFNlcnZlci5EdHMuUGlwZWxpbmUAZ2V0X1Bob25lAFR5cGUAZ2V0X0N1bHR1cmUAc2V0X0N1
+bHR1cmUAcmVzb3VyY2VDdWx0dXJlAEFwcGxpY2F0aW9uU2V0dGluZ3NCYXNlAGdldF9EYXRlRmly
+c3RQdXJjaGFzZQBnZXRfQmlydGhEYXRlAEVkaXRvckJyb3dzYWJsZVN0YXRlAENvbXBpbGVyR2Vu
+ZXJhdGVkQXR0cmlidXRlAERlYnVnZ2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUARGVidWdnYWJsZUF0
+dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVBdHRyaWJ1dGUAQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBB
+c3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1dGUAQXNzZW1i
+bHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFzc2VtYmx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQ29t
+cGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNz
+ZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAU1NJU1NjcmlwdENvbXBvbmVudEVudHJ5UG9pbnRBdHRy
+aWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmlsaXR5QXR0cmli
+dXRlAFByZUV4ZWN1dGUAUG9zdEV4ZWN1dGUAdmFsdWUAZ2V0X0hvdXNlT3duZXJGbGFnAFN5c3Rl
+bS5SdW50aW1lLlZlcnNpb25pbmcAR2V0U3RyaW5nAFN5c3RlbS5Db21wb25lbnRNb2RlbABTQ19h
+Nzk3NmI3OTg3NDQ0NTU4OGMwNWM0ZTkwZTY3Y2ViYy5kbGwAZ2V0X0FkZHJlc3NMaW5lMV9Jc051
+bGwAZ2V0X0FkZHJlc3NMaW5lMl9Jc051bGwAc2V0X1Byb2Nlc3NlZERhdGFfSXNOdWxsAGdldF9O
+dW1iZXJDYXJzT3duZWRfSXNOdWxsAGdldF9Db21tdXRlRGlzdGFuY2VfSXNOdWxsAGdldF9UaXRs
+ZV9Jc051bGwAZ2V0X05hbWVTdHlsZV9Jc051bGwAZ2V0X01pZGRsZU5hbWVfSXNOdWxsAGdldF9M
+YXN0TmFtZV9Jc051bGwAZ2V0X0ZpcnN0TmFtZV9Jc051bGwAZ2V0X051bWJlckNoaWxkcmVuQXRI
+b21lX0lzTnVsbABnZXRfWWVhcmx5SW5jb21lX0lzTnVsbABnZXRfUGhvbmVfSXNOdWxsAGdldF9E
+YXRlRmlyc3RQdXJjaGFzZV9Jc051bGwAZ2V0X0JpcnRoRGF0ZV9Jc051bGwAZ2V0X0hvdXNlT3du
+ZXJGbGFnX0lzTnVsbABnZXRfVG90YWxDaGlsZHJlbl9Jc051bGwAZ2V0X0ZyZW5jaEVkdWNhdGlv
+bl9Jc051bGwAZ2V0X0VuZ2xpc2hFZHVjYXRpb25fSXNOdWxsAGdldF9TcGFuaXNoRWR1Y2F0aW9u
+X0lzTnVsbABnZXRfRnJlbmNoT2NjdXBhdGlvbl9Jc051bGwAZ2V0X0VuZ2xpc2hPY2N1cGF0aW9u
+X0lzTnVsbABnZXRfU3BhbmlzaE9jY3VwYXRpb25fSXNOdWxsAGdldF9HZW5kZXJfSXNOdWxsAGdl
+dF9FbWFpbEFkZHJlc3NfSXNOdWxsAGdldF9NYXJpdGFsU3RhdHVzX0lzTnVsbABnZXRfU3VmZml4
+X0lzTnVsbABnZXRfQ3VzdG9tZXJBbHRlcm5hdGVLZXlfSXNOdWxsAGdldF9DdXN0b21lcktleV9J
+c051bGwAZ2V0X0dlb2dyYXBoeUtleV9Jc051bGwAU2V0TnVsbABzZXRfSXRlbQBTeXN0ZW0AcmVz
+b3VyY2VNYW4AZ2V0X1RvdGFsQ2hpbGRyZW4AU2NyaXB0TWFpbgBnZXRfRnJlbmNoRWR1Y2F0aW9u
+AGdldF9FbmdsaXNoRWR1Y2F0aW9uAGdldF9TcGFuaXNoRWR1Y2F0aW9uAGdldF9GcmVuY2hPY2N1
+cGF0aW9uAGdldF9FbmdsaXNoT2NjdXBhdGlvbgBnZXRfU3BhbmlzaE9jY3VwYXRpb24AU3lzdGVt
+LkNvbmZpZ3VyYXRpb24AU3lzdGVtLkdsb2JhbGl6YXRpb24AU3lzdGVtLlJlZmxlY3Rpb24ASW52
+YWxpZE9wZXJhdGlvbkV4Y2VwdGlvbgBTdHJpbmdDb21wYXJpc29uAEN1bHR1cmVJbmZvAE91dHB1
+dE5hbWVNYXAAT3V0cHV0TWFwAGdldF9HZW5kZXIASW5wdXQwQnVmZmVyAFBpcGVsaW5lQnVmZmVy
+AFNjcmlwdEJ1ZmZlcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAC5jdG9yAC5jY3RvcgBTeXN0ZW0uRGlh
+Z25vc3RpY3MAU3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJTZXJ2aWNlcwBTeXN0ZW0uUmVzb3VyY2Vz
+AFNDX2E3OTc2Yjc5ODc0NDQ1NTg4YzA1YzRlOTBlNjdjZWJjLlByb3BlcnRpZXMuUmVzb3VyY2Vz
+LnJlc291cmNlcwBEZWJ1Z2dpbmdNb2RlcwBTQ19hNzk3NmI3OTg3NDQ0NTU4OGMwNWM0ZTkwZTY3
+Y2ViYy5Qcm9wZXJ0aWVzAFZhcmlhYmxlcwBCdWZmZXJDb2x1bW5JbmRleGVzAEdldENvbHVtbklu
+ZGV4ZXMAU2V0dGluZ3MARXF1YWxzAENvbm5lY3Rpb25zAGdldF9FbWFpbEFkZHJlc3MAZ2V0X01h
+cml0YWxTdGF0dXMAQ29uY2F0AE9iamVjdABFbmRPZlJvd3NldABnZXRfRGVmYXVsdABVc2VyQ29t
+cG9uZW50AFBhcmVudENvbXBvbmVudABTY3JpcHRDb21wb25lbnQATWljcm9zb2Z0LlNxbFNlcnZl
+ci5UeFNjcmlwdABNaWNyb3NvZnQuU3FsU2VydmVyLlBpcGVsaW5lSG9zdABJbnB1dDBfUHJvY2Vz
+c0lucHV0AElucHV0MF9Qcm9jZXNzSW5wdXRSb3cATmV4dFJvdwBnZXRfU3VmZml4AGdldF9DdXN0
+b21lckFsdGVybmF0ZUtleQBnZXRfQ3VzdG9tZXJLZXkAZ2V0X0dlb2dyYXBoeUtleQBnZXRfQXNz
+ZW1ibHkAAAANUwB1AGoAZQBlAHQAAICbSQBzAE4AdQBsAGwAIABwAHIAbwBwAGUAcgB0AHkAIABj
+AGEAbgBuAG8AdAAgAGIAZQAgAHMAZQB0ACAAdABvACAARgBhAGwAcwBlAC4AIABBAHMAcwBpAGcA
+bgAgAGEAIAB2AGEAbAB1AGUAIAB0AG8AIAB0AGgAZQAgAGMAbwBsAHUAbQBuACAAaQBuAHMAdABl
+AGEAZAAuAAAPSQBuAHAAdQB0ACAAMAAAcVMAQwBfAGEANwA5ADcANgBiADcAOQA4ADcANAA0ADQA
+NQA1ADgAOABjADAANQBjADQAZQA5ADAAZQA2ADcAYwBlAGIAYwAuAFAAcgBvAHAAZQByAHQAaQBl
+AHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAAAC9dvoGbiumR4EGwNk5JzjvAAQgAQEIAyAAAQUgAQER
+EQQgAQEOBSABARFZAwcBDgUAAg4ODgkgAwESPR0IEkEDBhI9AwYdCAQgAQ4IBCABAggFIAIBCBwD
+IAACBiACAg4RcQUgAR0ICAYAARJ1EXkEIAASfQYgAgEOEn0It3pcVhk04IkIiYRdzYCAzJEDBhIU
+AwYSGAMGEkUDBhJRAwYSVQMGEiAFIAEBEgwDIAAOBCABAQIJIAQBCA4SPRJBBSABARJFBAAAElEE
+AAASVQUAAQESVQQAABIgAwAAAQMoAA4DKAACBAgAElEECAASVQQIABIgCAEACAAAAAAAHgEAAQBU
+AhZXcmFwTm9uRXhjZXB0aW9uVGhyb3dzAQgBAAIAAAAAACgBACNTQ19hNzk3NmI3OTg3NDQ0NTU4
+OGMwNWM0ZTkwZTY3Y2ViYwAABQEAAAAAFgEAEUNvcHlyaWdodCBAICAyMDE4AABJAQAaLk5FVEZy
+YW1ld29yayxWZXJzaW9uPXY0LjUBAFQOFEZyYW1ld29ya0Rpc3BsYXlOYW1lEi5ORVQgRnJhbWV3
+b3JrIDQuNQQBAAAAAAC0AAAAzsrvvgEAAACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VS
+ZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGlj
+S2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJj
+ZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAcD8AAAAAAAAAAAAAij8AAAAgAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAHw/AAAAAAAAAAAAAAAAX0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAA
+EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAQ
+AAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAASAAAAFhA
+AADsAwAAAAAAAAAAAADsAzQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAAAAAAvQTv
+/gAAAQAAAAEAAAAAAAAAAQAAAAAAPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAABAFYA
+YQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBuAAAAAAAA
+ALAETAMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAKAMAAAEAMAAwADAAMAAwADQA
+YgAwAAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBuAHkATgBh
+AG0AZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABTAEMA
+XwBhADcAOQA3ADYAYgA3ADkAOAA3ADQANAA0ADUANQA4ADgAYwAwADUAYwA0AGUAOQAwAGUANgA3
+AGMAZQBiAGMAAAAwAAgAAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4AMAAuADAA
+AABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAQwBfAGEANwA5ADcANgBiADcAOQA4
+ADcANAA0ADQANQA1ADgAOABjADAANQBjADQAZQA5ADAAZQA2ADcAYwBlAGIAYwAuAGQAbABsAAAA
+SAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAAeQByAGkAZwBoAHQAIABA
+ACAAIAAyADAAMQA4AAAAKgABAAEATABlAGcAYQBsAFQAcgBhAGQAZQBtAGEAcgBrAHMAAAAAAAAA
+AAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBlAAAAUwBDAF8AYQA3ADkANwA2
+AGIANwA5ADgANwA0ADQANAA1ADUAOAA4AGMAMAA1AGMANABlADkAMABlADYANwBjAGUAYgBjAC4A
+ZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAAAAAAFMAQwBfAGEANwA5ADcANgBi
+ADcAOQA4ADcANAA0ADQANQA1ADgAOABjADAANQBjADQAZQA5ADAAZQA2ADcAYwBlAGIAYwAAADQA
+CAABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AMAAuADAAAAA4AAgAAQBB
+AHMAcwBlAG0AYgBsAHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgAwAC4AMAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAMAAAAnD8AAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_a7976b79874445588c05c4e90e67cebc</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum140"
+                  typeConverter="NOTBROWSABLE">31</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DF Scripting\Script Component.Inputs[Input 0]"
+                  hasSideEffects="true"
+                  name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[CustomerKey]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CustomerKey"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[CustomerKey]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[GeographyKey]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GeographyKey"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[GeographyKey]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[CustomerAlternateKey]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CustomerAlternateKey"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[CustomerAlternateKey]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[Title]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Title"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[Title]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="FirstName"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[MiddleName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MiddleName"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[MiddleName]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="LastName"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[NameStyle]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NameStyle"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[NameStyle]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[BirthDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BirthDate"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[BirthDate]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[MaritalStatus]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MaritalStatus"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[MaritalStatus]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[Suffix]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Suffix"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[Suffix]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[Gender]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Gender"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[Gender]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[EmailAddress]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EmailAddress"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[EmailAddress]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[YearlyIncome]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="YearlyIncome"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[YearlyIncome]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[TotalChildren]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TotalChildren"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[TotalChildren]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[NumberChildrenAtHome]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NumberChildrenAtHome"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[NumberChildrenAtHome]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[EnglishEducation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EnglishEducation"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[EnglishEducation]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[SpanishEducation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SpanishEducation"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[SpanishEducation]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[FrenchEducation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="FrenchEducation"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[FrenchEducation]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[EnglishOccupation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EnglishOccupation"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[EnglishOccupation]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[SpanishOccupation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SpanishOccupation"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[SpanishOccupation]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[FrenchOccupation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="FrenchOccupation"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[FrenchOccupation]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[HouseOwnerFlag]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="HouseOwnerFlag"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[HouseOwnerFlag]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[NumberCarsOwned]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NumberCarsOwned"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[NumberCarsOwned]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[AddressLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AddressLine1"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[AddressLine1]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[AddressLine2]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AddressLine2"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[AddressLine2]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[Phone]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Phone"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[Phone]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[DateFirstPurchase]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DateFirstPurchase"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[DateFirstPurchase]" />
+                    <inputColumn
+                      refId="Package\DF Scripting\Script Component.Inputs[Input 0].Columns[CommuteDistance]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CommuteDistance"
+                      lineageId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output].Columns[CommuteDistance]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF Scripting\Script Component.Outputs[Output 0]"
+                  name="Output 0"
+                  synchronousInputId="Package\DF Scripting\Script Component.Inputs[Input 0]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF Scripting\Script Component.Outputs[Output 0].Columns[ProcessedData]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DF Scripting\Script Component.Outputs[Output 0].Columns[ProcessedData]"
+                      name="ProcessedData" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF Scripting.Paths[Excel Source Output]"
+              endId="Package\DF Scripting\Script Component.Inputs[Input 0]"
+              name="Excel Source Output"
+              startId="Package\DF Scripting\Excel Source.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\DF Scripting.Paths[Output 0]"
+              endId="Package\DF Scripting\DataReaderDest.Inputs[DataReader Destination Input]"
+              name="Output 0"
+              startId="Package\DF Scripting\Script Component.Outputs[Output 0]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,41.6"
+          Id="Package\DF Scripting"
+          TopLeft="85.8571357532422,67.5058824301591" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DF Scripting">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\DF Scripting\Script Component"
+          TopLeft="373.857140930331,46.7411759901212" />
+        <NodeLayout
+          Size="139.2,41.6"
+          Id="Package\DF Scripting\Excel Source"
+          TopLeft="44.2857129622479,44.8235292830682" />
+        <EdgeLayout
+          Id="Package\DF Scripting.Paths[Excel Source Output]"
+          TopLeft="183.485712962248,66.5823526365947">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="190.371427968084,0"
+              Start="0,0"
+              End="182.871427968084,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="182.871427968084,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\DF Scripting\DataReaderDest"
+          TopLeft="693.71429752817,43.4352947268107" />
+        <EdgeLayout
+          Id="Package\DF Scripting.Paths[Output 0]"
+          TopLeft="536.257140930331,65.8882353584659">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="157.457156597838,0"
+              Start="0,0"
+              End="149.957156597838,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="149.957156597838,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="66.9785782989192,5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF Scripting\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
